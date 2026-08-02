@@ -31,7 +31,31 @@
 //
 
 // =============================================================================
-// YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
+#include <iostream>
+#include <cmath>
+
+bool isPrime(long long n) {
+    if (n < 2) return false;
+    if (n == 2) return true;
+    if (n % 2 == 0) return false;
+    for (long long i = 3; i * i <= n; i += 2) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+int main() {
+    long long n;
+    std::cout << "Enter a number: ";
+    if (!(std::cin >> n)) return 0;
+
+    if (isPrime(n))
+        std::cout << n << " is a prime number." << std::endl;
+    else
+        std::cout << n << " is NOT a prime number." << std::endl;
+
+    return 0;
+}
 // =============================================================================
 
 #include <iostream>

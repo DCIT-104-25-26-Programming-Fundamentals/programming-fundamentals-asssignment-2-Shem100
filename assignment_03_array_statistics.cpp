@@ -36,7 +36,79 @@
 
 //
 // =============================================================================
-// YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
+#include <iostream>
+#include <vector>
+#include <iomanip>
+
+double computeSum(const std::vector<double>& arr) {
+    double s = 0.0;
+    for (size_t i = 0; i < arr.size(); ++i) {
+        s += arr[i];
+    }
+    return s;
+}
+
+double computeAverage(const std::vector<double>& arr) {
+    if (arr.empty()) return 0.0;
+    double s = computeSum(arr);
+    return s / static_cast<double>(arr.size());
+}
+
+double findMaximum(const std::vector<double>& arr) {
+    // assume arr is non-empty when called
+    double mx = arr[0];
+    for (size_t i = 1; i < arr.size(); ++i) {
+        if (arr[i] > mx) mx = arr[i];
+    }
+    return mx;
+}
+
+double findMinimum(const std::vector<double>& arr) {
+    // assume arr is non-empty when called
+    double mn = arr[0];
+    for (size_t i = 1; i < arr.size(); ++i) {
+        if (arr[i] < mn) mn = arr[i];
+    }
+    return mn;
+}
+
+int main() {
+    int n;
+    std::cout << "How many numbers? ";
+    if (!(std::cin >> n)) return 0; // abort on input error
+
+    if (n <= 0) {
+        std::cout << "Error: Number of elements must be a positive integer." << std::endl;
+        return 0;
+    }
+
+    std::vector<double> nums;
+    nums.reserve(n);
+
+    for (int i = 0; i < n; ++i) {
+        double x;
+        std::cout << "Enter number " << (i + 1) << ": ";
+        if (!(std::cin >> x)) {
+            std::cout << "Input error." << std::endl;
+            return 0;
+        }
+        nums.push_back(x);
+    }
+
+    std::cout << std::endl << "Results:" << std::endl;
+    double sum = computeSum(nums);
+    double avg = computeAverage(nums);
+    double mx = findMaximum(nums);
+    double mn = findMinimum(nums);
+
+    // Print results. Average with one decimal like the example.
+    std::cout << "Sum:     " << ( (sum == (long long)sum) ? std::to_string((long long)sum) : std::to_string(sum) ) << std::endl;
+    std::cout << "Average: " << std::fixed << std::setprecision(1) << avg << std::endl;
+    std::cout << "Maximum: " << ( (mx == (long long)mx) ? std::to_string((long long)mx) : std::to_string(mx) ) << std::endl;
+    std::cout << "Minimum: " << ( (mn == (long long)mn) ? std::to_string((long long)mn) : std::to_string(mn) ) << std::endl;
+
+    return 0;
+}
 // =============================================================================
 
 #include <iostream>

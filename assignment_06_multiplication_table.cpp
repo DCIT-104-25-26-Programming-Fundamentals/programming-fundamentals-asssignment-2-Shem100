@@ -51,7 +51,60 @@
 
 //
 // =============================================================================
-// YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
+#include <iostream>
+#include <iomanip>
+
+void printSingleTable(int number) {
+    std::cout << "Multiplication Table for " << number << ":\n";
+    for (int i = 1; i <= 12; ++i) {
+        // Format similar to the example: number  x  i  =  product
+        std::cout << number
+                  << "  x  "
+                  << std::setw(2) << i
+                  << "  =  "
+                  << std::setw(3) << (number * i)
+                  << '\n';
+    }
+}
+
+void printTablesUpToN(int N) {
+    for (int num = 1; num <= N; ++num) {
+        printSingleTable(num);
+        if (num != N) {
+            std::cout << "---------------------------\n";
+        }
+    }
+}
+
+int main() {
+    std::cout << "Choose operation:\n";
+    std::cout << "1 - Single multiplication table (Part A)\n";
+    std::cout << "2 - Tables from 1 to N (Part B)\n";
+    std::cout << "Enter choice (1-2): ";
+
+    int choice;
+    if (!(std::cin >> choice)) return 0;
+
+    if (choice == 1) {
+        int number;
+        std::cout << "Enter a number: ";
+        if (!(std::cin >> number)) return 0;
+        printSingleTable(number);
+    } else if (choice == 2) {
+        int N;
+        std::cout << "Enter N: ";
+        if (!(std::cin >> N)) return 0;
+        if (N <= 0) {
+            std::cout << "Error: N must be a positive integer." << std::endl;
+            return 0;
+        }
+        printTablesUpToN(N);
+    } else {
+        std::cout << "Invalid choice." << std::endl;
+    }
+
+    return 0;
+}
 // =============================================================================
 
 #include <iostream>
